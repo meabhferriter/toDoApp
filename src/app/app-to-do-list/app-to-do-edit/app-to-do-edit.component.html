@@ -1,0 +1,100 @@
+<hr />
+<div style="padding-left: 10px">
+  <div style="border: solid 1px pink">
+    <div class="row mx-4" style="padding-left: 10px">
+      <div class="col-xs-8">
+        <div style="padding-top: 10px">
+          <form [formGroup]="toDoForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-xs-8">
+                <h3>Edit Your Task</h3>
+                <button type="submit" class="btn btn-success">Save</button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="onCancel()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="name">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    formControlName="title"
+                  /><span
+                    *ngIf="
+                      !toDoForm.get('title').valid &&
+                      toDoForm.get('title').touched
+                    "
+                    class="help-block"
+                    >Please enter a valid task title
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-4">
+                <div class="form-group">
+                  <label for="priority">Due Date</label>
+                  <input
+                    type="text"
+                    id="dueDate"
+                    class="form-control"
+                    formControlName="date"
+                  />
+                  <span
+                    *ngIf="
+                      !toDoForm.get('date').valid &&
+                      toDoForm.get('date').touched
+                    "
+                    class="help-block"
+                    >Please enter a valid due date</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="radio align-right" *ngFor="let priority of priorities">
+              <label for="priority">
+                <input
+                  type="radio"
+                  [value]="priority"
+                  formControlName="priority"
+                />{{ priority }}
+              </label>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-8">
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea
+                    type="text"
+                    id="description"
+                    class="form-control"
+                    formControlName="description"
+                  ></textarea
+                  ><span
+                    *ngIf="
+                      !toDoForm.get('description').valid &&
+                      toDoForm.get('description').touched
+                    "
+                    class="help-block"
+                    >Please enter a valid description</span
+                  >
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

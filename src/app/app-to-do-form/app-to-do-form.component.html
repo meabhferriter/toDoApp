@@ -1,0 +1,82 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="toDoForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-sm-6">
+          <label for="name">Title</label>
+          <input
+            type="text"
+            id="title"
+            class="form-control"
+            name="title"
+            formControlName="title"
+          />
+          <span
+            *ngIf="
+              !toDoForm.get('title').valid && toDoForm.get('title').touched
+            "
+            class="help-block"
+            >Please enter a valid task title</span
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 form-group">
+          <label for="date">Due Date</label>
+          <input
+            type="text"
+            id="dueDate"
+            class="form-control"
+            name="dueDate"
+            formControlName="date"
+          />
+          <span
+            *ngIf="!toDoForm.get('date').valid && toDoForm.get('date').touched"
+            class="help-block"
+            >Please enter a valid due date</span
+          >
+        </div>
+
+        <!-- <div class="col-sm-2 form-group"> -->
+        <div class="radio" *ngFor="let priority of priorities">
+          <label for="priority">
+            <input
+              type="radio"
+              formControlName="priority"
+              [value]="priority"
+            />{{ priority }}
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <label for="amount">Description</label>
+          <textarea
+            type="text"
+            id="description"
+            class="form-control"
+            name="description"
+            formControlName="description"
+          >
+          </textarea>
+          <span
+            *ngIf="
+              !toDoForm.get('description').valid &&
+              toDoForm.get('description').touched
+            "
+            class="help-block"
+            >Please enter a valid description</span
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit" #btn>Add</button>
+          <button class="btn btn-primary" type="button" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

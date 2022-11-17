@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewEntry()">
+      New To-Do Task
+    </button>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-xs-12">
+    <app-to-do-item
+      *ngFor="let todos of toDoItems; let i = index"
+      [todoItem]="todos"
+      [index]="i"
+    ></app-to-do-item>
+    <router-outlet></router-outlet>
+  </div>
+</div>
